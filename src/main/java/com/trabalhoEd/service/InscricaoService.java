@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InscricaoService {
-    private final String filePath = "src/main/resources/csv/inscricoes.csv";
+    private final String filePath = "src\\main\\resources\\csv\\inscricoes.csv";
 
     public void inserir(Inscricao inscricao) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            writer.write(inscricao.getCpf() + "," + inscricao.getCodigoDisciplina() + "," + inscricao.getCodigoProcesso());
-            writer.newLine();
+        try (FileWriter writer = new FileWriter(filePath, true)) {
+            writer.append(inscricao.getCpf()).append(",")
+                    .append(inscricao.getCodigoDisciplina()).append(",")
+                    .append(inscricao.getCodigoProcesso()).append("\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,10 +23,10 @@ public class InscricaoService {
         List<Inscricao> inscricoes = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            reader.readLine(); // Ignora o cabeçalho
             while ((line = reader.readLine()) != null) {
-                String[] dados = line.split(",");
-                inscricoes.add(new Inscricao(dados[0], dados[1], dados[2]));
+                String[] partes = line.split(",");
+                Inscricao inscricao = new Inscricao(partes[0], partes[1], partes[2]);
+                inscricoes.add(inscricao);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,34 +34,33 @@ public class InscricaoService {
         return inscricoes;
     }
 
-    public void atualizar(Inscricao inscricaoAtualizada) {
+    public void atualizar(Inscricao inscricao) {
         List<Inscricao> inscricoes = consultar();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("cpf,codigo_disciplina,codigo_processo");
-            writer.newLine();
-            for (Inscricao inscricao : inscricoes) {
-                if (inscricao.getCpf().equals(inscricaoAtualizada.getCpf()) &&
-                        inscricao.getCodigoDisciplina().equals(inscricaoAtualizada.getCodigoDisciplina())) {
-                    writer.write(inscricaoAtualizada.getCpf() + "," + inscricaoAtualizada.getCodigoDisciplina() + "," + inscricaoAtualizada.getCodigoProcesso());
+        try (FileWriter writer = new FileWriter(filePath, false)) { // Sobrescreve o arquivo
+            for (Inscricao i : inscricoes) {
+                if (i.getCpf().equals(inscricao.getCpf())) {
+                    writer.append(inscricao.getCpf()).append(",")
+                            .append(inscricao.getCodigoDisciplina()).append(",")
+                            .append(inscricao.getCodigoProcesso()).append("\n");
                 } else {
-                    writer.write(inscricao.getCpf() + "," + inscricao.getCodigoDisciplina() + "," + inscricao.getCodigoProcesso());
+                    writer.append(i.getCpf()).append(",")
+                            .append(i.getCodigoDisciplina()).append(",")
+                            .append(i.getCodigoProcesso()).append("\n");
                 }
-                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void remover(String cpf, String codigoDisciplina) {
+    public void remover(String cpf) {
         List<Inscricao> inscricoes = consultar();
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write("cpf,codigo_disciplina,codigo_processo");
-            writer.newLine();
+        try (FileWriter writer = new FileWriter(filePath, false)) { // Sobrescreve o arquivo
             for (Inscricao inscricao : inscricoes) {
-                if (!(inscricao.getCpf().equals(cpf) && inscricao.getCodigoDisciplina().equals(codigoDisciplina))) {
-                    writer.write(inscricao.getCpf() + "," + inscricao.getCodigoDisciplina() + "," + inscricao.getCodigoProcesso());
-                    writer.newLine();
+                if (!inscricao.getCpf().equals(cpf)) {
+                    writer.append(inscricao.getCpf()).append(",")
+                            .append(inscricao.getCodigoDisciplina()).append(",")
+                            .append(inscricao.getCodigoProcesso()).append("\n");
                 }
             }
         } catch (IOException e) {

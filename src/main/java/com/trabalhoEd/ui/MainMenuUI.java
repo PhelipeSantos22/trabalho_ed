@@ -1,61 +1,74 @@
 package main.java.com.trabalhoEd.ui;
 
-import main.java.com.trabalhoEd.ui.CursoUI;
-import main.java.com.trabalhoEd.ui.DisciplinaUI;
-import main.java.com.trabalhoEd.ui.InscricaoUI;
-import main.java.com.trabalhoEd.ui.ProfessorUI;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainMenuUI extends JFrame {
+
     public MainMenuUI() {
+        // Configurações da janela principal
         setTitle("Menu Principal");
-        setSize(300, 200);
+        setSize(300, 300); // Aumentei a altura para acomodar mais botões
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLayout(null);
 
-        // Botões do menu
-        JButton disciplinaButton = new JButton("Gerenciar Disciplinas");
-        JButton cursoButton = new JButton("Gerenciar Cursos");
-        JButton professorButton = new JButton("Gerenciar Professores");
-        JButton inscricaoButton = new JButton("Gerenciar Inscrições");
+        // Botões
+        JButton btnDisciplina = new JButton("Gerenciar Disciplinas");
+        btnDisciplina.setBounds(50, 30, 200, 30);
+        add(btnDisciplina);
 
-        disciplinaButton.addActionListener(new ActionListener() {
+        JButton btnCurso = new JButton("Gerenciar Cursos");
+        btnCurso.setBounds(50, 70, 200, 30);
+        add(btnCurso);
+
+        JButton btnProfessor = new JButton("Gerenciar Professores");
+        btnProfessor.setBounds(50, 110, 200, 30);
+        add(btnProfessor);
+
+        JButton btnInscricao = new JButton("Gerenciar Inscrições");
+        btnInscricao.setBounds(50, 150, 200, 30);
+        add(btnInscricao);
+
+        // Ação dos botões
+        btnDisciplina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new DisciplinaUI().setVisible(true);
+                // Abre a tela de disciplinas
+                new DisciplinaUI();
             }
         });
 
-        cursoButton.addActionListener(new ActionListener() {
+        btnCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new CursoUI().setVisible(true);
+                // Abre a tela de cursos
+                new CursoUI();
             }
         });
 
-        professorButton.addActionListener(new ActionListener() {
+        btnProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ProfessorUI().setVisible(true);
+                // Abre a tela de professores
+                new ProfessorUI();
             }
         });
 
-        inscricaoButton.addActionListener(new ActionListener() {
+        btnInscricao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new InscricaoUI().setVisible(true);
+                // Abre a tela de consulta de inscrições
+                new InscricaoUI();
             }
         });
 
-        JPanel panel = new JPanel();
-        panel.add(disciplinaButton);
-        panel.add(cursoButton);
-        panel.add(professorButton);
-        panel.add(inscricaoButton);
+        // Define a janela visível
+        setVisible(true);
+    }
 
-        add(panel);
+    public static void main(String[] args) {
+        // Inicializa o menu principal
+        new MainMenuUI();
     }
 }
