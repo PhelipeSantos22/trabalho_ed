@@ -1,0 +1,21 @@
+trabalho_ed/
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/
+│               └── trabalhoEd/
+│                   └──
+│                       ├── controller/       // Controladores para gerenciar a lógica do CRUD
+│                       ├── model/            // Classes que representam os dados (Disciplina, Curso, Professor)
+│                       ├── service/          // Classes que implementam a lógica de negócios
+│                       ├── util/             // Utilitários, como a classe CSVManager
+│                       └── main/             // Classe principal que inicia o aplicativo
+│
+└── src/
+    └── main/
+        └── resources/
+            └── csv/                        // Arquivos CSV
+                ├── disciplinas.csv         // ainda não criei meus arquivos
+                ├── cursos.csv
+                ├── professor.csv
+                └── inscricoes.csv

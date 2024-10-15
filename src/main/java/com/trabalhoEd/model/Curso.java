@@ -1,0 +1,28 @@
+package main.java.com.trabalhoEd.model;
+
+public class Curso {
+    private String codigo;
+    private String nome;
+    private String areaConhecimento;
+
+    // Construtor
+    public Curso(String codigo, String nome, String areaConhecimento) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.areaConhecimento = areaConhecimento;
+    }
+
+    public String getCodigo(){
+        return codigo;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public String getAreaConhecimento(){
+        return areaConhecimento;
+    }
+
+    // Getters e Setters
+}
