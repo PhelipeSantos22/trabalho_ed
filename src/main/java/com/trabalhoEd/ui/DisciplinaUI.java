@@ -12,7 +12,6 @@ import java.util.List;
 public class DisciplinaUI {
     private JFrame frame;
     private JTextField codigoField, nomeField, diaDaSemanaField, horarioInicialField, horasDiariasField, codigoCursoField;
-    private JTextArea resultadoArea;
     private DisciplinaService disciplinaService;
 
     public DisciplinaUI() {
@@ -25,7 +24,7 @@ public class DisciplinaUI {
         frame = new JFrame("Gerenciamento de Disciplinas");
         frame.setBounds(100, 100, 600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new GridLayout(9, 2));
+        frame.getContentPane().setLayout(new GridLayout(8, 2)); // Mudança para 8 linhas
 
         // Componentes da UI
         JLabel codigoLabel = new JLabel("Código:");
@@ -67,10 +66,6 @@ public class DisciplinaUI {
         frame.getContentPane().add(consultarButton);
         frame.getContentPane().add(atualizarButton);
         frame.getContentPane().add(removerButton);
-
-        resultadoArea = new JTextArea();
-        resultadoArea.setEditable(false);
-        frame.getContentPane().add(new JScrollPane(resultadoArea));
 
         // ActionListeners para os botões
         inserirButton.addActionListener(new ActionListener() {
@@ -115,10 +110,10 @@ public class DisciplinaUI {
 
             Disciplina disciplina = new Disciplina(codigo, nome, diaDaSemana, horarioInicial, horasDiarias, codigoCurso);
             disciplinaService.inserir(disciplina);
-            resultadoArea.setText("Disciplina inserida com sucesso!");
+            JOptionPane.showMessageDialog(frame, "Disciplina inserida com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            resultadoArea.setText("Erro ao inserir a disciplina. Verifique os dados.");
+            JOptionPane.showMessageDialog(frame, "Erro ao inserir a disciplina. Verifique os dados.", "Erro", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -128,15 +123,19 @@ public class DisciplinaUI {
         StringBuilder resultado = new StringBuilder();
 
         for (Disciplina disciplina : disciplinas) {
-            resultado.append(disciplina.getCodigo()).append(", ")
-                    .append(disciplina.getNome()).append(", ")
-                    .append(disciplina.getDiaDaSemana()).append(", ")
-                    .append(disciplina.getHorarioInicial()).append(", ")
-                    .append(disciplina.getHorasDiarias()).append(", ")
-                    .append(disciplina.getCodigoCurso()).append("\n");
+            resultado.append("Código: ").append(disciplina.getCodigo()).append(", ")
+                    .append("Nome: ").append(disciplina.getNome()).append(", ")
+                    .append("Dia da Semana: ").append(disciplina.getDiaDaSemana()).append(", ")
+                    .append("Horário Inicial: ").append(disciplina.getHorarioInicial()).append(", ")
+                    .append("Horas Diárias: ").append(disciplina.getHorasDiarias()).append(", ")
+                    .append("Código do Curso: ").append(disciplina.getCodigoCurso()).append("\n");
         }
 
-        resultadoArea.setText(resultado.toString());
+        if (resultado.length() > 0) {
+            JOptionPane.showMessageDialog(frame, resultado.toString(), "Disciplinas", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(frame, "Nenhuma disciplina encontrada.", "Informação", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void atualizarDisciplina() {
@@ -150,10 +149,10 @@ public class DisciplinaUI {
 
             Disciplina disciplinaAtualizada = new Disciplina(codigo, nome, diaDaSemana, horarioInicial, horasDiarias, codigoCurso);
             disciplinaService.atualizar(disciplinaAtualizada);
-            resultadoArea.setText("Disciplina atualizada com sucesso!");
+            JOptionPane.showMessageDialog(frame, "Disciplina atualizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            resultadoArea.setText("Erro ao atualizar a disciplina. Verifique os dados.");
+            JOptionPane.showMessageDialog(frame, "Erro ao atualizar a disciplina. Verifique os dados.", "Erro", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -161,7 +160,7 @@ public class DisciplinaUI {
     private void removerDisciplina() {
         String codigo = codigoField.getText();
         disciplinaService.remover(codigo);
-        resultadoArea.setText("Disciplina removida com sucesso!");
+        JOptionPane.showMessageDialog(frame, "Disciplina removida com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
