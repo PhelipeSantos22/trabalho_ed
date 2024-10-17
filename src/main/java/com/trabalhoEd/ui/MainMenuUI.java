@@ -1,5 +1,9 @@
 package main.java.com.trabalhoEd.ui;
 
+import main.java.com.trabalhoEd.ui.disciplinaUI.DisciplinaMenuUI;
+import main.java.com.trabalhoEd.ui.cursosUI.CursoMenuUI;
+import main.java.com.trabalhoEd.ui.inscricaoUI.InscricaoMenuUI;
+import main.java.com.trabalhoEd.ui.professorUI.ProfessorMenuUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,8 +13,8 @@ public class MainMenuUI extends JFrame {
     public MainMenuUI() {
         // Configurações da janela principal
         setTitle("Menu Principal");
-        setSize(300, 300); // Aumentei a altura para acomodar mais botões
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(300, 300);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
         // Botões
@@ -34,41 +38,31 @@ public class MainMenuUI extends JFrame {
         btnDisciplina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a tela de disciplinas
-                new DisciplinaUI();
+                new DisciplinaMenuUI();
             }
         });
 
         btnCurso.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a tela de cursos
-                new CursoUI();
+                new CursoMenuUI();
             }
         });
 
         btnProfessor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a tela de professores
-                new ProfessorUI();
+                new ProfessorMenuUI();
             }
         });
 
         btnInscricao.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a tela de consulta de inscrições
-                new InscricaoUI();
+                new InscricaoMenuUI();
             }
         });
-
         // Define a janela visível
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        // Inicializa o menu principal
-        new MainMenuUI();
     }
 }
