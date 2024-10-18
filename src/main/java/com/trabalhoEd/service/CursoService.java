@@ -9,10 +9,14 @@ public class CursoService {
     private final String filePath = "src/main/resources/csv/cursos.csv";
 
     public void inserir(Curso curso) {
-        try (FileWriter writer = new FileWriter(filePath, true)) {
-            writer.append(curso.getCodigo()).append(",")
-                    .append(curso.getNome()).append(",")
-                    .append(curso.getAreaConhecimento()).append("\n");
+        boolean arquivoExiste = new File(filePath).exists();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            if (!arquivoExiste) {
+                writer.write("codigo,nome,area_conhecimento");
+                writer.newLine();
+            }
+            writer.write(curso.getCodigo() + "," + curso.getNome() + "," + curso.getAreaConhecimento());
+            writer.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,10 +26,14 @@ public class CursoService {
         List<Curso> cursos = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] partes = line.split(",");
-                Curso curso = new Curso(partes[0], partes[1], partes[2]);
-                cursos.add(curso);
+                if (partes.length == 3) {
+                    cursos.add(new Curso(partes[0], partes[1], partes[2]));
+                } else {
+                    System.err.println("Linha inválida: " + line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -33,29 +41,19 @@ public class CursoService {
         return cursos;
     }
 
-    public Curso consultarPorCodigo(String codigo) {
+    public void atualizar(Curso cursoAtualizado) {
         List<Curso> cursos = consultar();
-        for (Curso curso : cursos) {
-            if (curso.getCodigo().equals(codigo)) {
-                return curso;
-            }
-        }
-        return null;
-    }
-
-    public void atualizar(Curso curso) {
-        List<Curso> cursos = consultar();
-        try (FileWriter writer = new FileWriter(filePath, false)) { // Sobrescreve o arquivo
-            for (Curso c : cursos) {
-                if (c.getCodigo().equals(curso.getCodigo())) {
-                    writer.append(curso.getCodigo()).append(",")
-                            .append(curso.getNome()).append(",")
-                            .append(curso.getAreaConhecimento()).append("\n");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            // Reescrever o cabeçalho
+            writer.write("codigo,nome,area_conhecimento");
+            writer.newLine();
+            for (Curso curso : cursos) {
+                if (curso.getCodigo().equals(cursoAtualizado.getCodigo())) {
+                    writer.write(cursoAtualizado.getCodigo() + "," + cursoAtualizado.getNome() + "," + cursoAtualizado.getAreaConhecimento());
                 } else {
-                    writer.append(c.getCodigo()).append(",")
-                            .append(c.getNome()).append(",")
-                            .append(c.getAreaConhecimento()).append("\n");
+                    writer.write(curso.getCodigo() + "," + curso.getNome() + "," + curso.getAreaConhecimento());
                 }
+                writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,12 +62,13 @@ public class CursoService {
 
     public void remover(String codigo) {
         List<Curso> cursos = consultar();
-        try (FileWriter writer = new FileWriter(filePath, false)) { // Sobrescreve o arquivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("codigo,nome,area_conhecimento");
+            writer.newLine();
             for (Curso curso : cursos) {
                 if (!curso.getCodigo().equals(codigo)) {
-                    writer.append(curso.getCodigo()).append(",")
-                            .append(curso.getNome()).append(",")
-                            .append(curso.getAreaConhecimento()).append("\n");
+                    writer.write(curso.getCodigo() + "," + curso.getNome() + "," + curso.getAreaConhecimento());
+                    writer.newLine();
                 }
             }
         } catch (IOException e) {

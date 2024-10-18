@@ -27,7 +27,7 @@ public class DisciplinaRemoverUI {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Label e campo para Código
-        JLabel codigoLabel = new JLabel("Código:");
+        JLabel codigoLabel = new JLabel("Informe o Código da desciplina para remove-la:");
         gbc.gridx = 0;
         gbc.gridy = 0;
         frame.getContentPane().add(codigoLabel, gbc);

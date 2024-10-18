@@ -26,9 +26,8 @@ public class InscricaoAtualizarUI extends JFrame {
 
         JButton atualizarButton = new JButton("Atualizar");
 
-
         // Adicionando componentes à tela
-        add(new JLabel("CPF do Professor:"));
+        add(new JLabel("Informe o CPF do Inscrito para atualiza-lo:"));
         add(cpfField);
         add(new JLabel("Código da Disciplina:"));
         add(codigoDisciplinaField);
@@ -48,7 +47,6 @@ public class InscricaoAtualizarUI extends JFrame {
                 JOptionPane.showMessageDialog(InscricaoAtualizarUI.this, "Inscrição atualizada com sucesso!");
             }
         });
-
         setVisible(true);
     }
 }

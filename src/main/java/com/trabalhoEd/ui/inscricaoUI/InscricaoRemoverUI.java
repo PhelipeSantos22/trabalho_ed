@@ -11,17 +11,17 @@ public class InscricaoRemoverUI extends JFrame {
 
     public InscricaoRemoverUI() {
         setTitle("Remover Inscrição - (NÃO DEIXE NENHUM CAMPO EM BRANCO)");
-        setSize(600, 200); // Tamanho ajustado para melhor visibilidade
+        setSize(600, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(new GridBagLayout()); // Usando GridBagLayout para melhor controle
+        setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os componentes
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Label e Campo para entrada de CPF
-        JLabel cpfLabel = new JLabel("CPF do Professor:");
+        JLabel cpfLabel = new JLabel("Informe o CPF para remover a inscrição:");
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(cpfLabel, gbc);

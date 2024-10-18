@@ -4,7 +4,7 @@ import main.java.com.trabalhoEd.model.Curso;
 import main.java.com.trabalhoEd.service.CursoService;
 
 import javax.swing.*;
-import java.util.List;
+import java.awt.*;
 
 public class CursoInserirUI extends JFrame {
     private CursoService cursoService = new CursoService();
@@ -12,10 +12,11 @@ public class CursoInserirUI extends JFrame {
 
     public CursoInserirUI() {
         setTitle("Inserir Curso - (NÃO DEIXE NENHUM CAMPO EM BRANCO)");
-        setSize(600, 400);
+        setSize(400, 250);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(null);
 
+        // Criação dos componentes
         JLabel codigoLabel = new JLabel("Código:");
         JLabel nomeLabel = new JLabel("Nome:");
         JLabel areaConhecimentoLabel = new JLabel("Área de Conhecimento:");
@@ -26,21 +27,28 @@ public class CursoInserirUI extends JFrame {
 
         JButton inserirButton = new JButton("Inserir");
 
-        // Define posições e tamanhos dos componentes
-        codigoLabel.setBounds(10, 10, 150, 25);
-        codigoField.setBounds(160, 10, 100, 25);
-        nomeLabel.setBounds(10, 40, 150, 25);
-        nomeField.setBounds(160, 40, 100, 25);
-        areaConhecimentoLabel.setBounds(10, 70, 150, 25);
-        areaConhecimentoField.setBounds(160, 70, 100, 25);
-        inserirButton.setBounds(10, 100, 100, 25);
+        // Definição do layout dos componentes
+        codigoLabel.setBounds(10, 20, 150, 25);
+        codigoField.setBounds(170, 20, 200, 25);
+
+        nomeLabel.setBounds(10, 60, 150, 25);
+        nomeField.setBounds(170, 60, 200, 25);
+
+        areaConhecimentoLabel.setBounds(10, 100, 150, 25);
+        areaConhecimentoField.setBounds(170, 100, 200, 25);
+
+        inserirButton.setBounds(150, 150, 100, 30);
 
         // Adiciona componentes ao JFrame
         add(codigoLabel);
         add(codigoField);
+        add(nomeLabel);
+        add(nomeField);
+        add(areaConhecimentoLabel);
+        add(areaConhecimentoField);
         add(inserirButton);
 
-        // Ações dos botões
+        // Ação do botão inserir
         inserirButton.addActionListener(e -> inserirCurso());
 
         setVisible(true);
@@ -51,8 +59,17 @@ public class CursoInserirUI extends JFrame {
         String nome = nomeField.getText();
         String areaConhecimento = areaConhecimentoField.getText();
 
-        Curso curso = new Curso(codigo, nome, areaConhecimento);
-        cursoService.inserir(curso);
-        JOptionPane.showMessageDialog(this, "Curso inserido com sucesso!");
+        if (codigo.isEmpty() || nome.isEmpty() || areaConhecimento.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else {
+            Curso curso = new Curso(codigo, nome, areaConhecimento);
+            cursoService.inserir(curso);
+            JOptionPane.showMessageDialog(this, "Curso inserido com sucesso!");
+
+            // Limpar campos após inserção
+            codigoField.setText("");
+            nomeField.setText("");
+            areaConhecimentoField.setText("");
+        }
     }
 }

@@ -79,7 +79,6 @@ public class DisciplinaInserirUI {
             Disciplina disciplina = new Disciplina(codigo, nome, diaDaSemana, horarioInicial, horasDiarias, codigoCurso);
             disciplinaService.inserir(disciplina);
             JOptionPane.showMessageDialog(frame, "Disciplina inserida com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(frame, "Erro ao inserir a disciplina. Verifique os dados.", "Erro", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

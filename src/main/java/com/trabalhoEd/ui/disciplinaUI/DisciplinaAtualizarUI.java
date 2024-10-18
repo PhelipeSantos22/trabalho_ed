@@ -23,7 +23,7 @@ public class DisciplinaAtualizarUI {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.getContentPane().setLayout(new GridLayout(8, 2)); // Mudança para 8 linhas
 
-        JLabel codigoLabel = new JLabel("Código:");
+        JLabel codigoLabel = new JLabel("Informe o Código da disciplina para atualiza-la:");
         codigoField = new JTextField();
         frame.getContentPane().add(codigoLabel);
         frame.getContentPane().add(codigoField);
