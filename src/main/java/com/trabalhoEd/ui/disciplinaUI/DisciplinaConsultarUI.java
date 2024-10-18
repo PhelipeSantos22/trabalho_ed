@@ -2,7 +2,6 @@ package main.java.com.trabalhoEd.ui.disciplinaUI;
 
 import main.java.com.trabalhoEd.model.Disciplina;
 import main.java.com.trabalhoEd.service.DisciplinaService;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

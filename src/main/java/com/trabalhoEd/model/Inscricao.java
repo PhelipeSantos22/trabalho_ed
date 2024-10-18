@@ -5,7 +5,6 @@ public class Inscricao {
     private String codigoDisciplina;
     private String codigoProcesso;
 
-    // Construtor
     public Inscricao(String cpf, String codigoDisciplina, String codigoProcesso) {
         this.cpf = cpf;
         this.codigoDisciplina = codigoDisciplina;
@@ -23,7 +22,4 @@ public class Inscricao {
     public String getCodigoProcesso(){
         return codigoProcesso;
     }
-
-
-    // Getters e Setters
 }

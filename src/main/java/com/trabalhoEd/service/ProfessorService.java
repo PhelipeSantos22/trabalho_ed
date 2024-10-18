@@ -12,15 +12,15 @@ public class ProfessorService {
     // Método para inserir um professor no arquivo CSV
     public boolean inserir(Professor professor) {
         if (consultarPorCpf(professor.getCpf()) != null) {
-            return false; // Não insere se o CPF já existir
+            return false;
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(professor.getCpf() + "," + professor.getNome() + "," + professor.getArea() + "," + professor.getPontos());
             writer.newLine();
-            return true; // Inserção bem-sucedida
+            return true;
         } catch (IOException e) {
             e.printStackTrace();
-            return false; // Falha na inserção
+            return false;
         }
     }
 
@@ -29,7 +29,6 @@ public class ProfessorService {
         List<Professor> professores = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            // Ignora o cabeçalho
             reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] dados = line.split(",");
@@ -49,7 +48,7 @@ public class ProfessorService {
                 return professor;
             }
         }
-        return null; // Professor não encontrado
+        return null;
     }
 
     // Método para atualizar um professor
@@ -72,7 +71,7 @@ public class ProfessorService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return encontrado; // Retorna verdadeiro se o professor foi encontrado e atualizado
+        return encontrado;
     }
 
     // Método para remover um professor
@@ -86,13 +85,13 @@ public class ProfessorService {
                 if (!professor.getCpf().equals(cpf)) {
                     writer.write(professor.getCpf() + "," + professor.getNome() + "," + professor.getArea() + "," + professor.getPontos());
                 } else {
-                    encontrado = true; // Marcamos que o professor foi encontrado
+                    encontrado = true;
                 }
                 writer.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return encontrado; // Retorna verdadeiro se o professor foi encontrado e removido
+        return encontrado;
     }
 }

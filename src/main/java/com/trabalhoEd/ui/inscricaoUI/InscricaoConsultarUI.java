@@ -2,7 +2,6 @@ package main.java.com.trabalhoEd.ui.inscricaoUI;
 
 import main.java.com.trabalhoEd.model.Inscricao;
 import main.java.com.trabalhoEd.service.InscricaoService;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -60,8 +59,6 @@ public class InscricaoConsultarUI {
         } else {
             resultado.append("Nenhuma inscrição encontrada.");
         }
-
-        // Atualiza o JTextArea com o resultado
         resultadoArea.setText(resultado.toString());
     }
 }

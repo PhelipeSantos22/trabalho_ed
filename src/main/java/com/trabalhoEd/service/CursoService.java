@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CursoService {
-    private final String filePath = "src\\main\\resources\\csv\\cursos.csv";
+    private final String filePath = "src/main/resources/csv/cursos.csv";
 
     public void inserir(Curso curso) {
         try (FileWriter writer = new FileWriter(filePath, true)) {
@@ -40,7 +40,7 @@ public class CursoService {
                 return curso;
             }
         }
-        return null; // Retorna null se o curso não for encontrado
+        return null;
     }
 
     public void atualizar(Curso curso) {

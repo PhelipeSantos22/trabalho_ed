@@ -5,7 +5,6 @@ public class Curso {
     private String nome;
     private String areaConhecimento;
 
-    // Construtor
     public Curso(String codigo, String nome, String areaConhecimento) {
         this.codigo = codigo;
         this.nome = nome;
@@ -23,6 +22,4 @@ public class Curso {
     public String getAreaConhecimento(){
         return areaConhecimento;
     }
-
-    // Getters e Setters
 }

@@ -60,8 +60,6 @@ public class CursoConsultarUI {
         } else {
             resultado.append("Nenhum curso encontrado.");
         }
-
-        // Atualiza o JTextArea com o resultado
         resultadoArea.setText(resultado.toString());
     }
 }

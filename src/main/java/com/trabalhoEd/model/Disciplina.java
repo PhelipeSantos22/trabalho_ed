@@ -8,7 +8,6 @@ public class Disciplina {
     private int horasDiarias;
     private String codigoCurso;
 
-    // Construtor
     public Disciplina(String codigo, String nome, String diaDaSemana, String horarioInicial, int horasDiarias, String codigoCurso) {
         this.codigo = codigo;
         this.nome = nome;
@@ -41,7 +40,4 @@ public class Disciplina {
     public String getCodigoCurso(){
         return codigoCurso;
     }
-
-    // Getters e Setters
-    // (gerar automaticamente ou manualmente conforme necessário)
 }

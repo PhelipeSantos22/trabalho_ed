@@ -22,7 +22,7 @@ public class DisciplinaService {
         List<Disciplina> disciplinas = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
-            reader.readLine(); // Ignora o cabeçalho
+            reader.readLine();
             while ((line = reader.readLine()) != null) {
                 String[] dados = line.split(",");
                 disciplinas.add(new Disciplina(dados[0], dados[1], dados[2], dados[3], Integer.parseInt(dados[4]), dados[5]));

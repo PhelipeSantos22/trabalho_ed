@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InscricaoService {
-    private final String filePath = "src\\main\\resources\\csv\\inscricoes.csv";
+    private final String filePath = "src/main/resources/csv/inscricoes.csv";
 
     public void inserir(Inscricao inscricao) {
         try (FileWriter writer = new FileWriter(filePath, true)) {

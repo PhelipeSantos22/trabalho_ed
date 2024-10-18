@@ -6,7 +6,6 @@ public class Professor {
     private String area;
     private int pontos;
 
-    // Construtor
     public Professor(String cpf, String nome, String area, int pontos) {
         this.cpf = cpf;
         this.nome = nome;
@@ -29,6 +28,4 @@ public class Professor {
     public int getPontos(){
         return pontos;
     }
-
-    // Getters e Setters
 }

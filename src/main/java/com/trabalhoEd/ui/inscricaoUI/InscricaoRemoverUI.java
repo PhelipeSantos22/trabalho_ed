@@ -1,7 +1,6 @@
 package main.java.com.trabalhoEd.ui.inscricaoUI;
 
 import main.java.com.trabalhoEd.service.InscricaoService;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

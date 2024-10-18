@@ -1,6 +1,5 @@
 package main.java.com.trabalhoEd.ui.professorUI;
 
-
 import main.java.com.trabalhoEd.service.ProfessorService;
 import javax.swing.*;
 import java.awt.*;

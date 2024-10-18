@@ -1,9 +1,5 @@
 package main.java.com.trabalhoEd.ui.disciplinaUI;
 
-import main.java.com.trabalhoEd.ui.cursosUI.CursoAtualizarUI;
-import main.java.com.trabalhoEd.ui.cursosUI.CursoConsultarUI;
-import main.java.com.trabalhoEd.ui.cursosUI.CursoInserirUI;
-import main.java.com.trabalhoEd.ui.cursosUI.CursoRemoverUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
